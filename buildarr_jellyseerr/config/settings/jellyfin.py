@@ -24,7 +24,6 @@ from logging import getLogger
 from typing import Any, Dict, List, Optional, Set, Union, cast
 
 import requests
-
 from buildarr.config import RemoteMapEntry
 from buildarr.types import NonEmptyStr
 from pydantic import AnyHttpUrl, EmailStr, SecretStr
@@ -42,6 +41,16 @@ class JellyseerrJellyfinSettings(JellyseerrConfigBase):
     server_url: Optional[str] = None
     """
     Server URL that Jellyseerr will use to communicate with Jellyfin.
+    """
+
+    server_port: Optional[str] = None
+    """
+    Server port that Jellyseerr will use to communicate with Jellyfin
+    """
+
+    server_base_url: Optional[str] = None
+    """
+    Server base URL that Jellyseerr will use to communicate with Jellyfin
     """
 
     username: Optional[str] = None
@@ -78,7 +87,13 @@ class JellyseerrJellyfinSettings(JellyseerrConfigBase):
         # Check if we have all the information we need to initialise it.
         logger.info("Checking if required attributes are defined")
         missing_attrs: List[str] = []
-        for attr_name in ("server_url", "username", "password", "email_address", "libraries"):
+        for attr_name in (
+            "server_url",
+            "username",
+            "password",
+            "email_address",
+            "libraries",
+        ):
             attr_value: Optional[Union[str, SecretStr, Set[str]]] = getattr(self, attr_name)
             if isinstance(attr_value, SecretStr):
                 attr_value = attr_value.get_secret_value()
@@ -107,6 +122,8 @@ class JellyseerrJellyfinSettings(JellyseerrConfigBase):
                         "username": self.username,
                         "password": cast(SecretStr, self.password).get_secret_value(),
                         "hostname": self.server_url,
+                        "port": self.server_port,
+                        "urlBase": self.server_base_url,
                         "email": self.email_address,
                     },
                     session=session,
