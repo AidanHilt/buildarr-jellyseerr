@@ -24,6 +24,7 @@ from logging import getLogger
 from typing import Any, Dict, List, Optional, Set, Union, cast
 
 import requests
+
 from buildarr.config import RemoteMapEntry
 from buildarr.types import NonEmptyStr
 from pydantic import AnyHttpUrl, EmailStr, SecretStr
