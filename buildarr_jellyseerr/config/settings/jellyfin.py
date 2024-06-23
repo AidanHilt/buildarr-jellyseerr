@@ -48,7 +48,7 @@ class JellyseerrJellyfinSettings(JellyseerrConfigBase):
     Server port that Jellyseerr will use to communicate with Jellyfin
     """
 
-    base_url: Optional[str] = None
+    url_base: Optional[str] = None
     """
     Server base URL that Jellyseerr will use to communicate with Jellyfin
     """
@@ -90,7 +90,7 @@ class JellyseerrJellyfinSettings(JellyseerrConfigBase):
         for attr_name in (
             "server_url",
             "port",
-            "base_url",
+            "url_base",
             "username",
             "password",
             "email_address",
@@ -126,7 +126,7 @@ class JellyseerrJellyfinSettings(JellyseerrConfigBase):
                         "password": cast(SecretStr, self.password).get_secret_value(),
                         "hostname": self.server_url,
                         "port": self.port,
-                        "urlBase": self.base_url,
+                        "urlBase": self.url_base,
                         "email": self.email_address,
                     },
                     session=session,
