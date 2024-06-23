@@ -89,6 +89,8 @@ class JellyseerrJellyfinSettings(JellyseerrConfigBase):
         missing_attrs: List[str] = []
         for attr_name in (
             "server_url",
+            "port",
+            "base_url",
             "username",
             "password",
             "email_address",
@@ -109,6 +111,7 @@ class JellyseerrJellyfinSettings(JellyseerrConfigBase):
                 "or set the following attributes so Buildarr can automatically initialise it: "
                 f"{', '.join(repr(f'{tree}.{an}') for an in missing_attrs)}. ",
             )
+
         logger.info("Finished checking if required attributes are defined")
         # Start a session, to store the cookie used during initialisation.
         with requests.Session() as session:
