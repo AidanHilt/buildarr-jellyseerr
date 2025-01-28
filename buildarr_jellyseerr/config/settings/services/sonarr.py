@@ -20,14 +20,13 @@ Jellyseerr plugin Sonarr service configuration.
 from __future__ import annotations
 
 import logging
-
 from http import HTTPStatus
 from typing import Any, Dict, List, Mapping, Optional, Set, Union
 
 from buildarr.config import RemoteMapEntry
 from buildarr.state import state
 from buildarr.types import InstanceReference, NonEmptyStr, Port
-from pydantic import Field, validator
+from pydantic import AfterValidator, Field, validator
 from typing_extensions import Self
 
 from ....api import api_delete, api_get, api_post, api_put
