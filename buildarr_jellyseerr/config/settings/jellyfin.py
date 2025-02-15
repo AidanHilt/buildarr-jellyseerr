@@ -38,7 +38,7 @@ logger = getLogger(__name__)
 
 
 class JellyseerrJellyfinSettings(JellyseerrConfigBase):
-    server_url: Optional[str] = None
+    server_url: str = None
     """
     Server URL that Jellyseerr will use to communicate with Jellyfin.
     """
@@ -51,6 +51,11 @@ class JellyseerrJellyfinSettings(JellyseerrConfigBase):
     username: Optional[str] = None
     """
     Username of the Jellyfin administrator user that Jellyseerr will use.
+    """
+
+    port: str = None
+    """
+    The port that the Jellyfin server is accessible on
     """
 
     password: Optional[SecretStr] = None
