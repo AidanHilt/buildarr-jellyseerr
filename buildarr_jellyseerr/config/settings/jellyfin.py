@@ -118,6 +118,7 @@ class JellyseerrJellyfinSettings(JellyseerrConfigBase):
                         "urlBase": self.url_base,
                         "hostname": self.server_url,
                         "email": self.email_address,
+                        "port": self.port
                     },
                     session=session,
                     expected_status_code=HTTPStatus.OK,
