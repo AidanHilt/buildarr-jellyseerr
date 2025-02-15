@@ -24,7 +24,6 @@ from logging import getLogger
 from typing import Any, Dict, List, Optional, Set, Union, cast
 
 import requests
-
 from buildarr.config import RemoteMapEntry
 from buildarr.types import NonEmptyStr
 from pydantic import AnyHttpUrl, EmailStr, SecretStr
@@ -42,6 +41,11 @@ class JellyseerrJellyfinSettings(JellyseerrConfigBase):
     server_url: Optional[str] = None
     """
     Server URL that Jellyseerr will use to communicate with Jellyfin.
+    """
+
+    url_base: Optional[str] = None
+    """
+    The URL base, if applicable, that the Jellyfin server uses. This is needed for newer versions of Jellyseerr
     """
 
     username: Optional[str] = None
@@ -106,6 +110,7 @@ class JellyseerrJellyfinSettings(JellyseerrConfigBase):
                     {
                         "username": self.username,
                         "password": cast(SecretStr, self.password).get_secret_value(),
+                        "urlBase": self.url_base,
                         "hostname": self.server_url,
                         "email": self.email_address,
                     },
