@@ -108,6 +108,7 @@ class JellyseerrJellyfinSettings(JellyseerrConfigBase):
         with requests.Session() as session:
             # Configure the Jellyfin instance on Jellyseerr.
             logger.info("Authenticating Jellyseerr with Jellyfin")
+            print(self.url_base, self.port)
             try:
                 api_post(
                     host_url,
