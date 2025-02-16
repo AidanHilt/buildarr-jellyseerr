@@ -120,6 +120,8 @@ class JellyseerrJellyfinSettings(JellyseerrConfigBase):
                         "hostname": self.server_url,
                         "email": self.email_address,
                         "port": self.port
+                        # We can hardcode this, since we're always calling to the Jellyfin API. Frankly, ridiculous we have to do this
+                        "serverType": 2
                     },
                     session=session,
                     expected_status_code=HTTPStatus.OK,
