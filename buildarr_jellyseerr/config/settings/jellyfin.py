@@ -53,7 +53,7 @@ class JellyseerrJellyfinSettings(JellyseerrConfigBase):
     Username of the Jellyfin administrator user that Jellyseerr will use.
     """
 
-    port: Optional[str] = None
+    port: Optional[int] = None
     """
     The port that the Jellyfin server is accessible on
     """
