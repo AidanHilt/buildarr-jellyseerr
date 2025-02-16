@@ -119,7 +119,7 @@ class JellyseerrJellyfinSettings(JellyseerrConfigBase):
                         "urlBase": self.url_base,
                         "hostname": self.server_url,
                         "email": self.email_address,
-                        "port": self.port
+                        "port": self.port,
                         # We can hardcode this, since we're always calling to the Jellyfin API. Frankly, ridiculous we have to do this
                         "serverType": 2
                     },
