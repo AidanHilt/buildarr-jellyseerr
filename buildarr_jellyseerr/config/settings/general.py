@@ -23,7 +23,8 @@ from http import HTTPStatus
 from typing import ClassVar, List, Optional, Set
 
 from buildarr.config import RemoteMapEntry
-from buildarr.types import LowerCaseNonEmptyStr, LowerCaseStr, NonEmptyStr, UpperCaseStr
+from buildarr.types import (LowerCaseNonEmptyStr, LowerCaseStr, NonEmptyStr,
+                            UpperCaseStr)
 from pydantic import AnyHttpUrl
 from typing_extensions import Self
 
@@ -148,7 +149,7 @@ class JellyseerrGeneralSettings(JellyseerrConfigBase):
                 "encoder": lambda v: "|".join(sorted(v)) if v else "",
             },
         ),
-        ("discover_region", "region", {}),
+        ("discover_region", "discoverRegion", {}),
         ("hide_available_media", "hideAvailable", {}),
         ("allow_partial_series_requests", "partialRequestsEnabled", {}),
     ]
