@@ -539,6 +539,7 @@ class SonarrSettings(JellyseerrConfigBase):
             profile_tree = f"{tree}.definitions[{service_name!r}]"
             api_key = service._get_api_key()
             api_metadata = service._get_api_metadata(secrets, api_key)
+            print(api_metadata)
             root_folders: Set[str] = set(
                 api_rootfolder["path"] for api_rootfolder in api_metadata["rootFolders"]
             )
