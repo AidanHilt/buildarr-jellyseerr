@@ -230,7 +230,6 @@ class Sonarr(ArrBase):
         api_key: str,
         root_folders: Set[str],
         quality_profile_ids: Mapping[str, int],
-        language_profile_ids: Mapping[str, int],
         tag_ids: Mapping[str, int],
         required: bool = True,
     ) -> Self:
