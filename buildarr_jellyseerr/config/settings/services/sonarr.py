@@ -566,7 +566,7 @@ class SonarrSettings(JellyseerrConfigBase):
                     tree=profile_tree,
                     secrets=secrets,
                     quality_profile_ids=quality_profile_ids,
-                    language_profile_ids=language_profile_ids,
+                    #language_profile_ids=language_profile_ids,
                     tag_ids=tag_ids,
                     service_name=service_name,
                 )
@@ -583,7 +583,7 @@ class SonarrSettings(JellyseerrConfigBase):
                     required=False,
                 ),
                 quality_profile_ids=quality_profile_ids,
-                language_profile_ids=language_profile_ids,
+                #language_profile_ids=language_profile_ids,
                 tag_ids=tag_ids,
                 service_id=service_ids[service_name],
                 service_name=service_name,
