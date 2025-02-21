@@ -246,12 +246,12 @@ class Sonarr(ArrBase):
             resource_ref=resolved.quality_profile,
             required=required,
         )
-        resolved.language_profile = self._resolve_get_resource(  # type: ignore[assignment]
-            resource_description="language profile",
-            resource_ids=language_profile_ids,
-            resource_ref=resolved.language_profile,
-            required=required,
-        )
+        # resolved.language_profile = self._resolve_get_resource(  # type: ignore[assignment]
+        #     resource_description="language profile",
+        #     resource_ids=language_profile_ids,
+        #     resource_ref=resolved.language_profile,
+        #     required=required,
+        # )
         resolved.tags = set(
             self._resolve_get_resource(  # type: ignore[misc]
                 resource_description="tag",
