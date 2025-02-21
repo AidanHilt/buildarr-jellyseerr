@@ -558,7 +558,7 @@ class SonarrSettings(JellyseerrConfigBase):
                 api_key=api_key,
                 root_folders=root_folders,
                 quality_profile_ids=quality_profile_ids,
-                language_profile_ids=language_profile_ids,
+                #language_profile_ids=language_profile_ids,
                 tag_ids=tag_ids,
             )
             if service_name not in remote.definitions:
@@ -578,7 +578,7 @@ class SonarrSettings(JellyseerrConfigBase):
                     api_key=api_key,
                     root_folders=root_folders,
                     quality_profile_ids=quality_profile_ids,
-                    language_profile_ids=language_profile_ids,
+                    #language_profile_ids=language_profile_ids,
                     tag_ids=tag_ids,
                     required=False,
                 ),
