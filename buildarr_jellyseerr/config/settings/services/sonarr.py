@@ -546,10 +546,11 @@ class SonarrSettings(JellyseerrConfigBase):
             quality_profile_ids: Dict[str, int] = {
                 api_profile["name"]: api_profile["id"] for api_profile in api_metadata["profiles"]
             }
-            language_profile_ids: Dict[str, int] = {
-                api_profile["name"]: api_profile["id"]
-                for api_profile in api_metadata["languageProfiles"]
-            }
+            # Note: Looks like the sonarr API just doesn't have this anymore? Or doesn't provide it at least
+            # language_profile_ids: Dict[str, int] = {
+            #     api_profile["name"]: api_profile["id"]
+            #     for api_profile in api_metadata["languageProfiles"]
+            # }
             tag_ids: Dict[str, int] = {
                 api_profile["label"]: api_profile["id"] for api_profile in api_metadata["tags"]
             }
