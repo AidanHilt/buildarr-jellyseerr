@@ -70,7 +70,7 @@ class Sonarr(ArrBase):
     Quality profile to use for series in Sonarr.
     """
 
-    language_profile: Union[NonEmptyStr, int]
+#    language_profile: Union[NonEmptyStr, int]
     """
     Quality profile to use for series in Sonarr.
     """
