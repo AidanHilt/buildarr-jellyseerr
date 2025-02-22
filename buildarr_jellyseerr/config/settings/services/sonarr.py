@@ -270,16 +270,16 @@ class Sonarr(ArrBase):
             )
         else:
             resolved.anime_quality_profile = None
-        if resolved.anime_language_profile:
-            resolved.anime_language_profile = (
-                self._resolve_get_resource(  # type: ignore[assignment]
-                    resource_description="language profile",
-                    resource_ids=language_profile_ids,
-                    resource_ref=resolved.anime_language_profile,
-                    required=required,
-                )
-            )
-        else:
+        # if resolved.anime_language_profile:
+        #     resolved.anime_language_profile = (
+        #         self._resolve_get_resource(  # type: ignore[assignment]
+        #             resource_description="language profile",
+        #             resource_ids=language_profile_ids,
+        #             resource_ref=resolved.anime_language_profile,
+        #             required=required,
+        #         )
+        #     )
+        # else:
             resolved.anime_language_profile = None
         resolved.anime_tags = set(
             self._resolve_get_resource(  # type: ignore[misc]
@@ -326,7 +326,6 @@ class Sonarr(ArrBase):
         tree: str,
         secrets: JellyseerrSecrets,
         quality_profile_ids: Mapping[str, int],
-        language_profile_ids: Mapping[str, int],
         tag_ids: Mapping[str, int],
         service_name: str,
     ) -> None:
