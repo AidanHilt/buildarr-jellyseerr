@@ -118,13 +118,10 @@ class Sonarr(ArrBase):
     def _get_remote_map(
         cls,
         quality_profile_ids: Optional[Mapping[str, int]] = None,
-        language_profile_ids: Optional[Mapping[str, int]] = None,
         tag_ids: Optional[Mapping[str, int]] = None,
     ) -> List[RemoteMapEntry]:
         if not quality_profile_ids:
             quality_profile_ids = {}
-        if not language_profile_ids:
-            language_profile_ids = {}
         if not tag_ids:
             tag_ids = {}
         return [
@@ -145,15 +142,15 @@ class Sonarr(ArrBase):
                 },
             ),
             ("quality_profile", "activeProfileName", {}),
-            (
-                "language_profile",
-                "activeLanguageProfileId",
-                {
-                    # No decoder here: The language profile ID will get resolved
-                    # later *if* a Buildarr instance-to-instance link is used.
-                    "encoder": lambda v: language_profile_ids[v],
-                },
-            ),
+            # (
+            #     "language_profile",
+            #     "activeLanguageProfileId",
+            #     {
+            #         # No decoder here: The language profile ID will get resolved
+            #         # later *if* a Buildarr instance-to-instance link is used.
+            #         "encoder": lambda v: language_profile_ids[v],
+            #     },
+            # ),
             ("tags", "tags", {"encoder": lambda v: sorted(tag_ids[tag] for tag in v)}),
             (
                 "anime_root_folder",
@@ -182,17 +179,17 @@ class Sonarr(ArrBase):
                 "activeAnimeProfileName",
                 {"optional": True, "set_if": bool},
             ),
-            (
-                "anime_language_profile",
-                "activeAnimeLanguageProfileId",
-                {
-                    # No decoder here: The language profile ID will get resolved
-                    # later *if* a Buildarr instance-to-instance link is used.
-                    "optional": True,
-                    "set_if": bool,
-                    "encoder": lambda v: language_profile_ids[v],
-                },
-            ),
+            # (
+            #     "anime_language_profile",
+            #     "activeAnimeLanguageProfileId",
+            #     {
+            #         # No decoder here: The language profile ID will get resolved
+            #         # later *if* a Buildarr instance-to-instance link is used.
+            #         "optional": True,
+            #         "set_if": bool,
+            #         "encoder": lambda v: language_profile_ids[v],
+            #     },
+            # ),
             ("anime_tags", "animeTags", {"encoder": lambda v: sorted(tag_ids[tag] for tag in v)}),
             ("enable_season_folders", "enableSeasonFolders", {}),
         ]
@@ -333,7 +330,7 @@ class Sonarr(ArrBase):
             "name": service_name,
             **self.get_create_remote_attrs(
                 tree=tree,
-                remote_map=self._get_remote_map(quality_profile_ids, language_profile_ids, tag_ids),
+                remote_map=self._get_remote_map(quality_profile_ids, tag_ids),
             ),
         }
         api_post(secrets, "/api/v1/settings/sonarr", {"name": service_name, **remote_attrs})
@@ -344,7 +341,6 @@ class Sonarr(ArrBase):
         secrets: JellyseerrSecrets,
         remote: Self,
         quality_profile_ids: Mapping[str, int],
-        language_profile_ids: Mapping[str, int],
         tag_ids: Mapping[str, int],
         service_id: int,
         service_name: str,
@@ -352,7 +348,7 @@ class Sonarr(ArrBase):
         changed, remote_attrs = self.get_update_remote_attrs(
             tree=tree,
             remote=remote,
-            remote_map=self._get_remote_map(quality_profile_ids, language_profile_ids, tag_ids),
+            remote_map=self._get_remote_map(quality_profile_ids, tag_ids),
             set_unchanged=True,
         )
         if changed:
@@ -631,10 +627,10 @@ class SonarrSettings(JellyseerrConfigBase):
             quality_profile_ids: Dict[str, int] = {
                 api_profile["name"]: api_profile["id"] for api_profile in api_metadata["profiles"]
             }
-            language_profile_ids: Dict[str, int] = {
-                api_profile["name"]: api_profile["id"]
-                for api_profile in api_metadata["languageProfiles"]
-            }
+            # language_profile_ids: Dict[str, int] = {
+            #     api_profile["name"]: api_profile["id"]
+            #     for api_profile in api_metadata["languageProfiles"]
+            # }
             tag_ids: Dict[str, int] = {
                 api_profile["label"]: api_profile["id"] for api_profile in api_metadata["tags"]
             }
@@ -642,7 +638,7 @@ class SonarrSettings(JellyseerrConfigBase):
                 api_key=api_key,
                 root_folders=root_folders,
                 quality_profile_ids=quality_profile_ids,
-                language_profile_ids=language_profile_ids,
+                # language_profile_ids=language_profile_ids,
                 tag_ids=tag_ids,
             )
         self.definitions = resolved_definitions
