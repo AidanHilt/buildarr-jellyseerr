@@ -16,14 +16,14 @@
 Jellyseerr plugin notifications settings configuration.
 """
 
-
 from __future__ import annotations
 
 from ...types import JellyseerrConfigBase
 from .discord import DiscordSettings
 from .email import EmailSettings
 from .gotify import GotifySettings
-from .lunasea import LunaseaSettings
+
+# from .lunasea import LunaseaSettings
 from .pushbullet import PushbulletSettings
 from .pushover import PushoverSettings
 from .slack import SlackSettings
@@ -36,7 +36,7 @@ class JellyseerrNotificationsSettings(JellyseerrConfigBase):
     discord: DiscordSettings = DiscordSettings()
     email: EmailSettings = EmailSettings()
     gotify: GotifySettings = GotifySettings()
-    lunasea: LunaseaSettings = LunaseaSettings()
+    # lunasea: LunaseaSettings = LunaseaSettings()
     pushbullet: PushbulletSettings = PushbulletSettings()
     pushover: PushoverSettings = PushoverSettings()
     slack: SlackSettings = SlackSettings()
