@@ -131,7 +131,7 @@ class JellyseerrGeneralSettings(JellyseerrConfigBase):
             "applicationUrl",
             {"decoder": lambda v: v or None, "encoder": lambda v: v or ""},
         ),
-        ("enable_proxy_support", "trustProxy", {}),
+        ("enable_proxy_support", "trustProxy", {"optional": True}),
         ("enable_csrf_protection", "csrfProtection", {}),
         ("enable_image_caching", "cacheImages", {}),
         (
