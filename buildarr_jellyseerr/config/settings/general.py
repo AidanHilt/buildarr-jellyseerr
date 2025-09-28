@@ -16,15 +16,13 @@
 Jellyseerr plugin general settings configuration.
 """
 
-
 from __future__ import annotations
 
 from http import HTTPStatus
 from typing import ClassVar, List, Optional, Set
 
 from buildarr.config import RemoteMapEntry
-from buildarr.types import (LowerCaseNonEmptyStr, LowerCaseStr, NonEmptyStr,
-                            UpperCaseStr)
+from buildarr.types import LowerCaseNonEmptyStr, LowerCaseStr, NonEmptyStr, UpperCaseStr
 from pydantic import AnyHttpUrl
 from typing_extensions import Self
 
@@ -67,7 +65,7 @@ class JellyseerrGeneralSettings(JellyseerrConfigBase):
     If set to `null`, use the URL the browser is currently using to access Jellyseerr.
     """
 
-    enable_proxy_support: bool = False
+    enable_proxy_support: Optional[bool] = False
     """
     Allow Jellyseerr to correctly register client IP addresses behind a proxy.
 
